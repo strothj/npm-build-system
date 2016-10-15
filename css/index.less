@@ -1,0 +1,84 @@
+@white: #F8F8F8;
+@black: #1E2835;
+
+@header-height: 100px;
+
+body {
+    background-color: @white;
+    color: @black;
+}
+
+a {
+    color: @black;
+}
+
+header {
+    position: fixed;
+    height: @header-height;
+}
+
+.main {
+    padding-top: @header-height;
+}
+
+ul.horizontal {
+    list-style-type: none;
+
+    li {
+        display: inline-block;
+    }
+}
+
+a {
+    color: #000000;
+
+    &:hover {
+        color: #FF0000;
+    }
+}
+
+.button {
+    &-success {
+        background-color: #00FF00;
+    }
+    &-error {
+        background-color: #FF0000;
+    }
+}
+
+.border(@radius) {
+    border: @radius solid #000000;
+}
+
+div.tile {
+    width: 100px;
+    height: 100px;
+    .border(4px); /* Mix in the border class */
+}
+
+.generate-columns(4);
+
+.generate-columns(@n, @i: 1) when (@i =< @n) {
+    .col-@{i} {
+        width: (@i * 100% / @n);
+    }
+    .generate-columns(@n, (@i + 1));
+}
+
+@footer-height: 100px;
+@footer-padding: 20px;
+
+@blue: #0087BD;
+@light-blue: lighten(@blue, 20%);
+@very-light-blue: lighten(@blue, 40%);
+@dark-blue: darken(@blue, 20%);
+@very-dark-blue: darken(@blue, 30%);
+
+@red: #C40233;
+@purple: mix(@red, @blue, 50%);
+@light-purple: lighten(@purple, 20%);
+
+div.footer-inner {
+    height: @footer-height - 2 * @footer-padding;
+    background-color: @light-purple;
+}
